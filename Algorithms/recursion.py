@@ -79,7 +79,7 @@ def generate_rotations(n: int, m: int, prefix=None):
         prefix.pop()
 
 
-def generate_permutations(n: int, m: int=-1, prefix=None):
+def generate_permutations(n: int, m: int = -1, prefix=None):
     """
     :param n: amount of numbers
     :param m: amount of permutations
@@ -103,16 +103,16 @@ if __name__ == '__main__':
     # C = (500, 500)
     # D = (100, 500)
     # fractal_rectangle(A, B, C, D, 47)
-    # n = 13
-    # result = factorial(n)
-    # print(f"factorial n = {result}")
-    # a = 44
-    # b = 24
-    # result = gcd(a, b)
-    # print(f"gcd for {a} and {b} = {result}")
-    # num = 7.4
-    # power = 13
-    # result = quick_pow(num, power)
-    # print(f"{num} in pow {power} = {result}")
-    # generate_rotations(2, 3)
+    n = 13
+    result = factorial(n)
+    print(f"factorial n = {result}")
+    a = 44
+    b = 24
+    result = gcd(a, b)
+    print(f"gcd for {a} and {b} = {result}")
+    num = 7.4
+    power = 13
+    result = quick_pow(num, power)
+    print(f"{num} in pow {power} = {result}")
+    generate_rotations(2, 3)
     generate_permutations(3)

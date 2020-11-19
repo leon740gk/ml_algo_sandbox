@@ -1,4 +1,4 @@
-# This sorting algorithms have O(N**2) complexity
+# O(N**2) ----------------- Insertion Sort -----------------------------------
 def insertion_sort(a_list: list) -> None:
     """
     Sorting by insertion
@@ -13,6 +13,7 @@ def insertion_sort(a_list: list) -> None:
             i -= 1
 
 
+# O(N**2) ----------------- Choice Sort --------------------------------------
 def choice_sort(a_list: list) -> None:
     """
     Sorting by choice method
@@ -26,29 +27,23 @@ def choice_sort(a_list: list) -> None:
                 a_list[i], a_list[pos] = a_list[pos], a_list[i]
 
 
+# O(N**2) ----------------- Bubble Sort --------------------------------------
 def bubble_sort(a_list: list) -> None:
     """
     Sorting by bubble method
     :param a_list: list
     :return: None
     """
-    N = len(a_list)
-    for bypass in range(1, N):
-        for i in range(0, N-bypass):
-            if a_list[i] > a_list[i+1]:
-                a_list[i], a_list[i+1] = a_list[i+1], a_list[i]
-
-    # another implementation
-    # swapped = True
-    # while swapped:
-    #     swapped = False
-    #     for i in range(len(a_list) - 1):
-    #         if a_list[i] > a_list[i + 1]:
-    #             a_list[i], a_list[i + 1] = a_list[i + 1], a_list[i]
-    #             swapped = True
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(len(a_list) - 1):
+            if a_list[i] > a_list[i + 1]:
+                a_list[i], a_list[i + 1] = a_list[i + 1], a_list[i]
+                swapped = True
 
 
-# O(N)
+# O(N) --------------- Count Sort --------------------------------------------
 def count_sort(a_list: list) -> None:
     frequency_list_len = max(a_list) + 1
     frequency_list = [0] * frequency_list_len
@@ -61,7 +56,8 @@ def count_sort(a_list: list) -> None:
             a_list[i] = k
             i += 1
 
-# O(n log n)
+
+# O(n log n) --------- Quick Sort --------------------------------------------
 def partition(nums, low, high):
     pivot = nums[(low + high) // 2]
     i = low - 1
@@ -78,6 +74,7 @@ def partition(nums, low, high):
 
         nums[i], nums[j] = nums[j], nums[i]
 
+
 def quick_sort(nums):
     def _quick_sort(items, low, high):
         if low < high:
@@ -88,32 +85,59 @@ def quick_sort(nums):
     _quick_sort(nums, 0, len(nums) - 1)
 
 
-def test_list_generator() -> tuple:
-    test_list = list(range(10, 21)) + list(range(10))
-    sorted_list = list(range(21))
+# O(n log n) --------- Merge Sort --------------------------------------------
+def merge_sort(my_list: list):
+    if len(my_list) > 1:
+        mid = len(my_list) // 2
+        left = my_list[:mid]
+        right = my_list[mid:]
 
-    return test_list, sorted_list
+        # Recursive call on each half
+        merge_sort(left)
+        merge_sort(right)
+
+        # Two iterators for traversing the two halves
+        i = 0
+        j = 0
+
+        # Iterator for the main list
+        k = 0
+
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                # The value from the left half has been used
+                my_list[k] = left[i]
+                # Move the iterator forward
+                i += 1
+            else:
+                my_list[k] = right[j]
+                j += 1
+            # Move to the next slot
+            k += 1
+
+        # For all the remaining values
+        while i < len(left):
+            my_list[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            my_list[k] = right[j]
+            j += 1
+            k += 1
 
 
-def test_sort_algorithm(sort_algorithm):
-    test_list, sorted_list = test_list_generator()
-    sort_algorithm(test_list)
-    assert test_list == sorted_list
-
-
-def test_count_quick_sort_algorithm(sort_algorithm):
-    # test_list, sorted_list = test_list_generator()
-    # sort_algorithm(test_list)
-    # assert test_list == sorted_list
-    test_list = [7, 6, 3, 3, 3, 5, 5, 7, 8, 21, 13, 14, 13]
-    sorted_list = [3, 3, 3, 5, 5, 6, 7, 7, 8, 13, 13, 14, 21]
-    sort_algorithm(test_list)
-    assert test_list == sorted_list
-
-
+# ------------------------------ Testing section -----------------------------
 if __name__ == "__main__":
+    def test_sort_algorithm(sort_algorithm):
+        test_list = [7, 6, 3, 3, 3, 5, 5, 7, 8, 21, 13, 14, 13]
+        sorted_list = [3, 3, 3, 5, 5, 6, 7, 7, 8, 13, 13, 14, 21]
+        sort_algorithm(test_list)
+        assert test_list == sorted_list
+
     test_sort_algorithm(insertion_sort)
     test_sort_algorithm(choice_sort)
     test_sort_algorithm(bubble_sort)
-    test_count_quick_sort_algorithm(count_sort)
-    test_count_quick_sort_algorithm(quick_sort)
+    test_sort_algorithm(count_sort)
+    test_sort_algorithm(quick_sort)
+    test_sort_algorithm(merge_sort)
