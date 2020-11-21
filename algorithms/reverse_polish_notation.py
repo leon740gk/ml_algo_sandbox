@@ -64,12 +64,13 @@ def converter_to_rpn_format(expression: str) -> list:
     return result_array
 
 
-def rpn_algorithm(array: list):
+def rpn_algorithm(array: str):
     """
     https://habr.com/ru/post/282379/
     :param array: array of polish something strange
     :return: result of expression
     """
+    rpn_array = converter_to_rpn_format(array)
     stack = MyStack()
     ops = {
         '+': operator.add,
@@ -77,7 +78,7 @@ def rpn_algorithm(array: list):
         '*': operator.mul,
         '/': operator.truediv,  # use operator.div for Python 2
     }
-    for i in array:
+    for i in rpn_array:
         if isinstance(i, int):
             stack.push(i)
         else:
@@ -92,9 +93,9 @@ if __name__ == "__main__":
     exp = "2+7*5"
     exp_2 = "(2+7)*5"
     exp_3 = "(6+10-4)/(1+1*2)+1"
-    result = rpn_algorithm(converter_to_rpn_format(exp))
+    result = rpn_algorithm(exp)
     assert result == 37
-    result = rpn_algorithm(converter_to_rpn_format(exp_2))
+    result = rpn_algorithm(exp_2)
     assert result == 45
-    result = rpn_algorithm(converter_to_rpn_format(exp_3))
+    result = rpn_algorithm(exp_3)
     assert result == 5
