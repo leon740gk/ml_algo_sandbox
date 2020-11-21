@@ -1,3 +1,5 @@
+import operator
+
 from algorithms.my_stack import MyStack
 from algorithms.braces_sequences import is_braces_sequence_correct
 
@@ -69,13 +71,19 @@ def rpn_algorithm(array: list):
     :return: result of expression
     """
     stack = MyStack()
+    ops = {
+        '+': operator.add,
+        '-': operator.sub,
+        '*': operator.mul,
+        '/': operator.truediv,  # use operator.div for Python 2
+    }
     for i in array:
         if isinstance(i, int):
             stack.push(i)
         else:
             y = stack.pop()
             x = stack.pop()
-            stack.push(eval(str(x) + i + str(y)))
+            stack.push(ops[i](x, y))
 
     return stack.pop()
 
