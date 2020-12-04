@@ -1,4 +1,4 @@
-from algorithms.my_stack import MyStack
+from data_structures.my_stack import MyStack
 
 
 def is_braces_sequence_correct(sequence: str) -> bool:

@@ -1,6 +1,6 @@
 import operator
 
-from algorithms.my_stack import MyStack
+from data_structures.my_stack import MyStack
 from algorithms.braces_sequences import is_braces_sequence_correct
 
 
