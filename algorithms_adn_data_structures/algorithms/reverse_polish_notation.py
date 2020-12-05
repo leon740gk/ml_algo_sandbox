@@ -1,6 +1,6 @@
 import operator
 
-from data_structures.my_stack import MyStack
+from data_structures.my_stack import StackList
 from algorithms.braces_sequences import is_braces_sequence_correct
 
 
@@ -9,7 +9,7 @@ def converter_to_rpn_format(expression: str) -> list:
     if not is_braces_sequence_correct(expression):
         return result_array
 
-    op_stack = MyStack()  # operational stack
+    op_stack = StackList()  # operational stack
     numbers = [str(x) for x in range(10)]
     p1_operations = "*/"  # priority 1 operations
     p2_operations = "+-"  # priority 1 operations
@@ -71,7 +71,7 @@ def rpn_algorithm(array: str):
     :return: result of expression
     """
     rpn_array = converter_to_rpn_format(array)
-    stack = MyStack()
+    stack = StackList()
     ops = {
         '+': operator.add,
         '-': operator.sub,
