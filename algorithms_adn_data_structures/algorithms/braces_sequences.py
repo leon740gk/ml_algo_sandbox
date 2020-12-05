@@ -1,4 +1,4 @@
-from data_structures.my_stack import MyStack
+from data_structures.my_stack import StackList
 
 
 def is_braces_sequence_correct(sequence: str) -> bool:
@@ -7,7 +7,7 @@ def is_braces_sequence_correct(sequence: str) -> bool:
     :param sequence: string of braces
     :return: True or False
     """
-    stack = MyStack()
+    stack = StackList()
     for brace in sequence:
         if brace not in "()[]":
             continue
